@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.clubapi.dao.ApiEquipmentDao">
+
+
+    <sql id="equipmentColumn">
+        a.id as "id",
+        a.category_name as "name",
+        a.category_pic as "pic",
+        a.category_describe as "describe",
+        a.category_mode as "mode",
+        a.category_play as "play"
+    </sql>
+
+
+    <select id="getById" resultType="com.gzqf.club.entity.Appcat">
+        select
+        <include refid="equipmentColumn"></include>
+        from app_cat a
+        where a.id=#{id}
+    </select>
+</mapper>

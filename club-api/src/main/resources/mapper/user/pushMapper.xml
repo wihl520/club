@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.clubapi.dao.PushDao">
+    <sql id="userColumns">
+        a.id as "id",
+        a.news_title as "newsTitle",
+        a.news_pic as "newsPic",
+        a.news_content as "news_Content",
+        a.coach_id as "coachId",
+        a.news_date as "newsDate",
+        a.news_adress as "newsAdress",
+        a.news_praise as "newsPraise",
+        a.praise_person as "praisePerson"
+    </sql>
+
+    <select id="getPush" resultType="com.gzqf.club.entity.NewsPush">
+        select
+        <include refid="userColumns"></include>
+        from news_push a
+    </select>
+
+    <select id="getPushId" resultType="com.gzqf.club.entity.NewsPush">
+        select
+        <include refid="userColumns"></include>
+        from news_push a
+        WHERE a.id=#{id}
+    </select>
+</mapper>

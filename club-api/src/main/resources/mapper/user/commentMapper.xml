@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.clubapi.dao.CommentDao">
+
+    <select id="getComment" resultType="com.gzqf.club.entity.CommentInfo">
+        SELECT	a.comment_content,b.comment_content,c.name
+          FROM comment  a LEFT JOIN comment  b ON b.comment_id = a.member_id
+            LEFT JOIN member  c ON c.id = a.member_id
+            LEFT JOIN news_push d ON a.news_id = d.id
+        WHERE a.comment_id = 0
+    </select>
+
+
+
+</mapper>

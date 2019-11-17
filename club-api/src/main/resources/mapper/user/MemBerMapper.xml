@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.clubapi.dao.MemBerDao">
+    <sql id="MemberColumn">
+        a.id,
+        a.name,
+        a.password,
+        a.email,
+        a.sex,
+        a.level,
+        a.phone,
+        a.created,
+        a.updated,
+        a.coach_id AS coachId,
+        a.pic,
+        a.address,
+        a.memberday AS memberDay,
+        a.age,
+        a.plan,
+        a.wantbuild AS wantBuild,
+        a.is_coach AS isCoach,
+        a.is_del AS isDel
+    </sql>
+
+    <select id="findList" resultType="Member">
+        SELECT
+        <include refid="MemberColumn"></include>
+        FROM  member a
+        WHERE
+          is_del=0
+    </select>
+
+    <insert id="save">
+        INSERT INTO member(
+            name,
+            password,
+            email,
+            sex,
+            level,
+            phone,
+            created,
+            updated,
+            coach_id,
+            pic,
+            address,
+            memberday,
+            age,
+            plan,
+            wantbuild,
+            is_coach,
+            is_del
+        )
+        VALUES (
+            #{name},
+            #{password},
+            #{email},
+            #{sex},
+            #{level},
+            #{phone},
+            #{created},
+            #{updated},
+            #{coachId},
+            #{pic},
+            #{address},
+            #{memberDay},
+            #{age},
+            #{plan},
+            #{wantBuild},
+            #{isCoach },
+            0
+                )
+    </insert>
+
+    <select id="getById" resultType="com.gzqf.club.entity.Member">
+        select
+        <include refid="MemberColumn"></include>
+        from member a
+        where id=#{id}
+    </select>
+    
+    <update id="update">
+        UPDATE member
+        SET
+            name = #{name},
+            password = #{password},
+            email = #{email},
+            sex = #{sex},
+            level = #{level},
+            phone = #{phone},
+            created = #{created},
+            updated = #{updated},
+            coach_id = #{coachId},
+            pic = #{pic},
+            address = #{address},
+            memberday = #{memberDay},
+            age = #{age},
+            plan = #{plan},
+            wantbuild = #{wantBuild},
+            is_coach = #{isCoach},
+            WHERE
+              id=#{id}
+    </update>
+
+      <update id="updateAll">
+            UPDATE member
+            SET
+                is_del =1,
+             WHERE
+                id=#{id}
+       </update>
+    <delete id="deleteMutil">
+        delete from member where id in
+
+        <foreach collection="ids" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+
+    </delete>
+
+<!--    <select id="findList" resultType="com.gzqf.club.entity.Member">
+        select
+        <include refid="MemberColumn"></include>
+        from tb_user a
+        where 2=2
+        <if test="email!=null and email!=''">
+            and a.email like concat('%',#{email},'%')
+        </if>
+        <if test="phone!=null and phone !=''">
+            and a.phone like concat('%',#{phone},'%')
+        </if>
+        <if test="userName!=null and userName!=''">
+            and a.username like concat('%',#{userName},'%')
+        </if>
+        <if test="page!=null">
+            limit #{page.start},#{page.pageSize}
+        </if>
+    </select>-->
+
+    <!--修改会员日期-->
+    <update id="updateMemberday">
+        UPDATE   member
+        SET
+        memberday = #{memberDay}
+        WHERE
+        id=#{id}
+    </update>
+</mapper>

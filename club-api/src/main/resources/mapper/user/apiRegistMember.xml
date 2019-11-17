@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.clubapi.dao.ApiMemberRegistDao">
+    <sql id="memberColumn">
+        a.id as "id",
+        a.name as "name",
+        a.password as "password",
+        a.email as "email",
+        a.sex as "sex",
+        a.level as "level",
+        a.phone as "phone",
+        a.coach_id as "coachId",
+        a.pic as "pic",
+        a.address as "address",
+        a.memberday as "memberDay",
+        a.age as "age",
+        a.plan as "plan",
+        a.wantbuild as "wantBuild",
+        a.is_coach as "isCoach",
+        a.is_del as "isDel",
+        a.created AS "created",
+        a.updated as "updated"
+    </sql>
+
+    <select id="VerifyMemberName" resultType="com.gzqf.club.entity.Member">
+        SELECT
+        <include refid="memberColumn"></include>
+        FROM  member a
+        WHERE  a.name=#{name}
+    </select>
+    <select id="VerifyMemberEmail" resultType="com.gzqf.club.entity.Member">
+        SELECT
+        <include refid="memberColumn"></include>
+        FROM  member a
+        WHERE  a.email=#{email}
+    </select>
+
+    <insert id="registmember">
+        insert into member (name,password,email,level,created,updated,memberday,is_coach,is_del) values (#{name},#{password},#{email},'1',#{created},#{updated},'0','0','0')
+
+    </insert>
+
+    <update id="update">
+        update member set sex =#{sex},phone=#{phone},updated=#{updated},address=#{address},age=#{age},wantbuild=#{wantBuild},pic=#{pic} where id=#{id}
+    </update>
+
+    <select id="getById" resultType="com.gzqf.club.entity.Member">
+        SELECT
+        <include refid="memberColumn"></include>
+        FROM  member a
+        WHERE  a.id=#{id}
+    </select>
+
+    <update id="updatepassword" >
+        update member set password=#{password} where id=#{id}
+    </update>
+
+    <select id="getIdAndPassword" resultType="com.gzqf.club.entity.Member">
+        SELECT
+        <include refid="memberColumn"></include>
+        FROM  member a
+        WHERE a.id=#{id} and a.password=#{password}
+    </select>
+</mapper>
