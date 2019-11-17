@@ -1,0 +1,128 @@
+body {
+	position: relative;
+	font: 14px/1.5 "Hiragino Sans GB", "Microsoft YaHei", 微软雅黑, arial, Tahoma, SimSun, sans-serif, "PingFang SC Regular";
+}
+
+.module-nav {
+	width: 1190px;
+	margin: 0 auto;
+}
+.main-wrapper {
+	font: 14px/1.5 "Hiragino Sans GB", "Microsoft YaHei", 微软雅黑, arial, Tahoma, SimSun, sans-serif, "PingFang SC Regular";
+	width: 1190px;
+	margin: 0 auto;
+}
+.left-box {
+	width: 850px;
+	float: left;
+}
+.module-basic {
+	background-color: #fff;
+	padding: 20px 30px 0;
+	margin-bottom: 10px;
+	height: 300px;
+}
+.module-basic .first-line {
+	position: relative;
+	padding-bottom: 25px;
+}
+.module-basic .first-line p span {
+	font-size: 12px;
+	color: #666;
+	margin-right: 20px;
+}
+.module-basic .title-line {
+	padding-bottom: 20px;
+}
+.module-basic .title-line h2 {
+	position: relative;
+	color: #333;
+	font-size: 28px;
+	line-height: 28px;
+	font-weight: bold;
+	float: left;
+}
+.module-basic .title-line p {
+	color: #333;
+	font-size: 28px;
+	float: left;
+	line-height: 20px;
+	margin-left: 20px;
+}
+.module-basic .title-line ul {
+	float: left;
+	position: relative;
+	top: 8px;
+}
+.module-basic .salary-line {
+	padding-bottom: 30px;
+	border-bottom: 1px solid #f3f3f3;
+	position: relative;
+	overflow: hidden;
+	padding-top: 5px;
+}
+.module-basic .salary-line b {
+	font-size: 36px;
+	color: #F85B58;
+	line-height: 30px;
+	font-weight: bold;
+}
+.module-basic .salary-line i {
+	font-size: 14px;
+	line-height: 30px;
+	color: #F85B58;
+	margin-left: 2px;
+}
+.module-basic .location-line {
+	font-size: 16px;
+	line-height: 50px;
+	height: 60px;
+}
+.module-basic .location-line b {
+	float: left;
+	font-weight: normal;
+}
+.module-basic .location-line p {
+	width: 710px;
+	color: #666;
+	float: left;
+}
+.module-description {
+	background: #fff;
+	padding: 26px 34px 30px 26px;
+}
+.module-description .description-tit {
+	overflow: hidden;
+	margin-bottom: 35px;
+	line-height: 30px;
+}
+.module-description .description-tit h3 {
+	font-size: 28px;
+	color: #333;
+	font-weight: bold;
+}
+.module-description .description-tit h3 i {
+	font-size: 14px;
+	color: #C8C8C8;
+	margin-top: 7px;
+	margin-left: 20px;
+}
+.module-description .description-label {
+	text-align: left;
+}
+.module-description .description-label span {
+	margin-right: 10px;
+	padding: 6px 17px;
+	font-size: 12px;
+	color: #8BA1BE;
+	background: #F3F7F9;
+}
+.module-description .description-content {
+	margin-top: 20px;
+	line-height: 30px;
+}
+.right-box {
+	float: left;
+	width: 330px;
+	margin-left: 8px;
+}
