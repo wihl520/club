@@ -39,7 +39,7 @@
     <!--配置Spring MVC拦截器-->
 <!--
     <mvc:interceptors>
-        <mvc:interceptor>
+        <mvc:intercepter>
             &lt;!&ndash;匹配的路径&ndash;&gt;
             <mvc:mapping path="/**"/>
             &lt;!&ndash;匹配空路径&ndash;&gt;
@@ -56,7 +56,7 @@
            <mvc:exclude-mapping path="/kaptcha"></mvc:exclude-mapping>
             &lt;!&ndash;加入拦截器的地址&ndash;&gt;
             <bean class=""></bean>
-        </mvc:interceptor>
+        </mvc:intercepter>
 
     </mvc:interceptors>-->
 </beans>

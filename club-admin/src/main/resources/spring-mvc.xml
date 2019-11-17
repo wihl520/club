@@ -39,15 +39,15 @@
             <!--匹配的路径-->
             <mvc:mapping path="/**"/>
             <!--排除的路径-->
+            <mvc:exclude-mapping path="/login"></mvc:exclude-mapping>
             <mvc:exclude-mapping path="/admin/login"></mvc:exclude-mapping>
-            <mvc:exclude-mapping path="/nowlogin"></mvc:exclude-mapping>
             <mvc:exclude-mapping path="/static/**"></mvc:exclude-mapping>
             <!--排除对照片的请求-->
             <mvc:exclude-mapping path="/content/picShow/**"></mvc:exclude-mapping>
             <!--二维码也会拦截，要排除-->
-            <mvc:exclude-mapping path="/kaptcha"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/admin/kaptcha"></mvc:exclude-mapping>
             <!--加入拦截器的地址-->
-            <bean class="com.gzqf.club.intercepter.LoginInterceptor"></bean>
+            <bean class="com.gzqf.club.intercepter.LoginIntercepter"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

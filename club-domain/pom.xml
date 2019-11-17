@@ -2,23 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>club</artifactId>
-        <groupId>com.gzqf</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.gzqf</groupId>
+        <artifactId>club-dependencies</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../club-dependencies/pom.xml</relativePath>
+    </parent>
 
     <artifactId>club-domain</artifactId>
     <packaging>jar</packaging>
+
+    <name>club-domain</name>
+    <description>实体类管理模块</description>
 
     <!--加入common的共同依赖-->
     <dependencies>
         <dependency>
             <groupId>com.gzqf</groupId>
             <artifactId>club-common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.parent.version}</version>
         </dependency>
         <!--加入实现实体类方法的依赖-->
         <dependency>

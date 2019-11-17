@@ -18,7 +18,7 @@ public class LoginController {
      *
      * @return 请求页面地址
      */
-    @RequestMapping("")
+    @RequestMapping(value = {"", "login"})
     public String toLogin() {
         return "redirect:/admin/login";
     }

@@ -58,7 +58,7 @@
 
                 <div class="fm-item pos-r">
                     <label  class="form-label">验证码</label>
-                    <input name="verificationcode" type="text" placeholder="输入验证码"   id="yzm" class="i-text yzm" nullmsg="请输入验证码！" >
+                    <input name="verificationcode" type="text" placeholder="输入验证码"  id="yzm" class="i-text yzm" nullmsg="请输入验证码！" >
                     <div class="ui-form-explain"> <img id="verificationcode" class="yzm-img" /></div>
                 </div>
 
@@ -81,13 +81,9 @@
                     <label>
                         <input type="checkbox" name="autologin" id="autologin"   ${userDto.autologin==true?"checked='checked'":""} > 自动登录
                     </label>
-
                 </div>
-
             </form>
-
         </div>
-
     </div>
 
     <div class="bd">

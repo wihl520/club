@@ -45,11 +45,6 @@ public class Usercontroller extends BaseController<IUserService, User> {
     @Autowired
     private Producer producer;
 
-    @RequestMapping("/index")
-    public String index() {
-        return "/admin/index";
-    }
-
     /**
      * 登录页面的请求跳转
      *
@@ -58,16 +53,16 @@ public class Usercontroller extends BaseController<IUserService, User> {
      * @return String
      */
     @RequestMapping(value = {"", "/login"}, method = RequestMethod.GET)
-    public String admintologin(HttpServletResponse resp, HttpServletRequest req) {
-
+    public String admintologin(HttpServletResponse resp, HttpServletRequest req, User user) {
         HttpSession session = req.getSession();
         String cookieValue = CookieUtils.getCookieValue(req, REMEBER_AUTO_LOGIN);
+
         //cookie为空直接去到登录页面
         if (StringUtils.isEmpty(cookieValue)) {
-            return "/login";
+            return "login";
         }
         UserDto<User> userDto = Service.queryUserDto(cookieValue);
-        return RemeberOrAutologin(resp, req, session, userDto);
+        return remeberOrAutologin(resp, req, session, userDto);
     }
 
     /**
@@ -79,7 +74,7 @@ public class Usercontroller extends BaseController<IUserService, User> {
      * @param userDto
      * @return
      */
-    private String RemeberOrAutologin(HttpServletResponse resp, HttpServletRequest req, HttpSession session, UserDto userDto) {
+    private String remeberOrAutologin(HttpServletResponse resp, HttpServletRequest req, HttpSession session, UserDto userDto) {
         if (userDto.getStatus() == UserDto.FAIL_STATUS) {
             //自动登录出错
             req.setAttribute(REMEBER_Message, userDto.getMessage());
