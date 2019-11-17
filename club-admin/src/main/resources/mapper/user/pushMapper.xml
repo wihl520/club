@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.club.dao.INewsPushDao">
+    <sql id="newsPushColumns">
+        a.id as "id",
+        a.coach_id as "coach.id",
+        IFNULL(b.name,'/') as "coach.name",
+        a.news_title as "newsTitle",
+        a.news_pic as "newsPic",
+        a.news_content as "newsContent",
+        a.news_date as "newsDate",
+        a.news_adress as "newsAdress",
+        a.news_praise as "newsPraise"
+    </sql>
+
+    <!--更新数据-->
+    <update id="update">
+        update news_push
+        set
+        coach_id = #{coach.id},
+        news_title = #{newsTitle},
+        news_pic = #{newsPic},
+        news_content = #{newsContent},
+        news_adress = #{newsAdress},
+        news_praise = #{newsPraise}
+        where id = #{id}
+    </update>
+
+    <!--新增-->
+    <insert id="save">
+        insert into news_push(coach_id,news_title,news_pic,news_content,news_date,news_adress,news_praise)
+        values(#{coach.id},#{newsTitle},#{newsPic},#{newsContent},#{newsDate},#{newsAdress},#{newsPraise})
+    </insert>
+
+    <!--删除数据-->
+    <delete id="delete">
+        delete from news_push where id = #{id}
+    </delete>
+
+    <!--查询符合条件的数据-->
+    <select id="findList" resultType="com.gzqf.club.entity.NewsPush">
+        select
+        <include refid="newsPushColumns"></include>
+        from news_push a
+        left join member b on a.coach_id = b.id
+        where 1=1
+        <if test="newsTitle != null and newsTitle !=''">
+            and a.news_title like concat('%',#{newsTitle},'%')
+        </if>
+        <if test="page!=null">
+            limit #{page.start},#{page.pageSize}
+        </if>
+    </select>
+
+    <!--查询符合条件的条数-->
+    <select id="findListCount" resultType="java.lang.Long">
+        select count(*)
+        from news_push a
+        where 1=1
+        <if test="newsTitle != null and newsTitle !=''">
+            and a.news_title like concat('%',#{newsTitle},'%')
+        </if>
+    </select>
+
+    <!--/依据ID查询数据-->
+    <select id="getById" resultType="com.gzqf.club.entity.NewsPush">
+        select
+        <include refid="newsPushColumns"></include>
+        from news_push a
+        left join member b on a.coach_id = b.id
+        where a.id = #{id}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.club.dao.IApplianceDao">
+    <sql id="applianceColumn">
+        a.id,
+        a.kit_name as "kitName",
+        a.total as "total",
+        a.kit_pic as "kitPic",
+        a.startday as  "startDay",
+        a.user_id as "userId",
+        a.state as "state",
+        a.flag as "flag",
+        IFNULL(a.category_id,0) as "parent.id",
+        IFNULL(b.category_name,'/') as "parent.name"
+        /*a.created,
+        a.updated*/
+    </sql>
+
+    <!--查询符合条件的数据-->
+    <select id="findList" resultType="com.gzqf.club.entity.ApplianceAdmin">
+        select
+        <include refid="applianceColumn"></include>
+        from appliance a
+        left join app_cat b on a.category_id = b.id
+        where 1=1
+        <if test="kitName != null and kitName !=''">
+            and a.kit_name like concat('%',#{kitName},'%')
+        </if>
+        <if test="page!=null">
+            limit #{page.start},#{page.pageSize}
+        </if>
+    </select>
+
+    <!--/依据ID查询数据-->
+    <select id="getById" resultType="com.gzqf.club.entity.ApplianceAdmin">
+        select
+        <include refid="applianceColumn"></include>
+        from appliance a
+        left join app_cat b on a.category_id = b.id
+        where a.id = #{id}
+    </select>
+
+    <!--查询符合条件的条数-->
+    <select id="findListCount" resultType="java.lang.Long">
+        select count(*)
+        from appliance a
+        where 1=1
+        <if test="kitName != null and kitName !=''">
+            and a.kit_name like concat('%',#{kitName},'%')
+        </if>
+    </select>
+
+  <!--  <if test="parent.name != null and parent.name !=''">
+        and b.category_name like concat('%',#{parent.name},'%')
+    </if>-->
+    <!--更新数据-->
+    <update id="update">
+        update appliance
+        set
+        category_id = #{parent.id},
+        kit_name = #{kitName},
+        kit_pic = #{kitPic},
+        flag = #{flag},
+        total =#{total},
+        startday = #{startDay}
+        where id = #{id}
+    </update>
+
+   <!-- <update id="setIsParentTrue">
+        update app_cat
+        set is_parent = 1
+        where id = #{id}
+    </update>-->
+
+    <!--<update id="setIsParentFalse">
+        update app_cat
+        set is_parent = 0
+        where id = #{id}
+    </update>-->
+    <!--新增-->
+    <insert id="save">
+        insert into appliance(category_id,kit_name,kit_pic,flag,total,startday)
+        values(#{parent.id},#{kitName},#{kitPic},#{flag},#{total},#{startDay})
+    </insert>
+
+    <!--删除数据-->
+    <delete id="delete">
+        delete from appliance where id = #{id}
+    </delete>
+</mapper>

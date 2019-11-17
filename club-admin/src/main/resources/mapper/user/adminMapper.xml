@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gzqf.club.dao.IUserDao">
+    <sql id="userColumn">
+        a.name as "userName",
+        a.password as "password",
+        a.phone as "phone",
+        a.email as "email"
+    </sql>
+
+    <select id="getByNameAndPassword" resultType="com.gzqf.club.entity.User">
+        SELECT
+        <include refid="userColumn"></include>
+        FROM  admin a
+        WHERE  a.name=#{userName} and a.password=#{password}
+    </select>
+
+</mapper>
